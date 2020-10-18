@@ -10,35 +10,15 @@ public class StartUI {
             if (select == 0) {
                 StartUI.createItem(input, tracker);
             } else if (select == 1) {
-                System.out.println("=== Showing all items ====");
-                Item[] allItems = tracker.findAll();
-                if (allItems.length == 0) {
-                    System.out.println("Заявок нет");
-                } else {
-                    for (Item oneItem : allItems) {
-                        System.out.println(oneItem);
-                    }
-                }
+                StartUI.showAllItems(tracker);
             } else if (select == 2) {
                 StartUI.replaceItem(input, tracker);
             } else if (select == 3) {
                 StartUI.deleteItem(input, tracker);
             } else if (select == 4) {
-                System.out.println("=== Finding item by ID ====");
-                int idForSearch = input.askInt("Введите ID заявки, которую необходимо найти: ");
-                Item itemFound = tracker.findById(idForSearch);
-                System.out.println(itemFound == null ? "Заявка с таким id не найдена" : itemFound);
+                StartUI.findById(input, tracker);
             } else if (select == 5) {
-                System.out.println("=== Finding item by name ====");
-                String nameForSearch = input.askStr("Введите имя заявки, которую необходимо найти: ");
-                Item[] foundItems = tracker.findByName(nameForSearch);
-                if (foundItems.length == 0) {
-                    System.out.println("Заявки с таким именем не найдены");
-                } else {
-                    for (Item oneItem : foundItems) {
-                        System.out.println(oneItem);
-                    }
-                }
+                findByName(input, tracker);
             } else if (select == 6) {
                 run = false;
             }
@@ -63,6 +43,18 @@ public class StartUI {
         tracker.add(item);
     }
 
+    public static void showAllItems(Tracker tracker) {
+        System.out.println("=== Showing all items ====");
+        Item[] allItems = tracker.findAll();
+        if (allItems.length == 0) {
+            System.out.println("Заявок нет");
+        } else {
+            for (Item oneItem : allItems) {
+                System.out.println(oneItem);
+            }
+        }
+    }
+
     public static void replaceItem(Input input, Tracker tracker) {
         System.out.println("=== Editing item ====");
         int idForEdit = input.askInt("Введите ID заявки, которую необходимо изменить: ");
@@ -78,6 +70,26 @@ public class StartUI {
         int idForDelete = input.askInt("Введите ID заявки, которую необходимо удалить: ");
         boolean isDeleted = tracker.delete(idForDelete);
         System.out.println(isDeleted ? "Заявка успешно удалена" : "Ошибка при удалении заявки");
+    }
+
+    public static void findById(Input input, Tracker tracker) {
+        System.out.println("=== Finding item by ID ====");
+        int idForSearch = input.askInt("Введите ID заявки, которую необходимо найти: ");
+        Item itemFound = tracker.findById(idForSearch);
+        System.out.println(itemFound == null ? "Заявка с таким id не найдена" : itemFound);
+    }
+
+    public static void findByName(Input input, Tracker tracker) {
+        System.out.println("=== Finding item by name ====");
+        String nameForSearch = input.askStr("Введите имя заявки, которую необходимо найти: ");
+        Item[] foundItems = tracker.findByName(nameForSearch);
+        if (foundItems.length == 0) {
+            System.out.println("Заявки с таким именем не найдены");
+        } else {
+            for (Item oneItem : foundItems) {
+                System.out.println(oneItem);
+            }
+        }
     }
 
     public static void main(String[] args) {
