@@ -8,10 +8,7 @@ public class StartUI {
             this.showMenu();
             select = input.askInt("select: ");
             if (select == 0) {
-                System.out.println("=== Create a new Item ====");
-                String newName = input.askStr("Enter name: ");
-                Item newItem = new Item(newName);
-                tracker.add(newItem);
+                StartUI.createItem(input, tracker);
             } else if (select == 1) {
                 System.out.println("=== Showing all items ====");
                 Item[] allItems = tracker.findAll();
@@ -23,18 +20,9 @@ public class StartUI {
                     }
                 }
             } else if (select == 2) {
-                System.out.println("=== Editing item ====");
-                int idForEdit = input.askInt("Введите ID заявки, которую необходимо изменить: ");
-                String nameForEdit = input.askStr("Введите имя новой заявки: ");
-                Item itemForEdit = new Item();
-                itemForEdit.setName(nameForEdit);
-                boolean isReplaced = tracker.replace(idForEdit, itemForEdit);
-                System.out.println(isReplaced ? "Заявка успешно изменена" : "Ошибка при изменении заявки");
+                StartUI.replaceItem(input, tracker);
             } else if (select == 3) {
-                System.out.println("=== Deleting item ====");
-                int idForDelete = input.askInt("Введите ID заявки, которую необходимо удалить: ");
-                boolean isDeleted = tracker.delete(idForDelete);
-                System.out.println(isDeleted ? "Заявка успешно удалена" : "Ошибка при удалении заявки");
+                StartUI.deleteItem(input, tracker);
             } else if (select == 4) {
                 System.out.println("=== Finding item by ID ====");
                 int idForSearch = input.askInt("Введите ID заявки, которую необходимо найти: ");
@@ -68,6 +56,29 @@ public class StartUI {
                 "6. Exit Program\n");
     }
 
+    public static void createItem(Input input, Tracker tracker) {
+        System.out.println("=== Create a new Item ====");
+        String name = input.askStr("Enter name: ");
+        Item item = new Item(name);
+        tracker.add(item);
+    }
+
+    public static void replaceItem(Input input, Tracker tracker) {
+        System.out.println("=== Editing item ====");
+        int idForEdit = input.askInt("Введите ID заявки, которую необходимо изменить: ");
+        String nameForEdit = input.askStr("Введите имя новой заявки: ");
+        Item itemForEdit = new Item();
+        itemForEdit.setName(nameForEdit);
+        boolean isReplaced = tracker.replace(idForEdit, itemForEdit);
+        System.out.println(isReplaced ? "Заявка успешно изменена" : "Ошибка при изменении заявки");
+    }
+
+    public static void deleteItem(Input input, Tracker tracker) {
+        System.out.println("=== Deleting item ====");
+        int idForDelete = input.askInt("Введите ID заявки, которую необходимо удалить: ");
+        boolean isDeleted = tracker.delete(idForDelete);
+        System.out.println(isDeleted ? "Заявка успешно удалена" : "Ошибка при удалении заявки");
+    }
 
     public static void main(String[] args) {
         Input input = new ConsoleInput();
