@@ -18,7 +18,7 @@ public class StartUI {
             } else if (select == 4) {
                 StartUI.findById(input, tracker);
             } else if (select == 5) {
-                findByName(input, tracker);
+                StartUI.findByName(input, tracker);
             } else if (select == 6) {
                 run = false;
             }
