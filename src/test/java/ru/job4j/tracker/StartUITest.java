@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.Arrays;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
@@ -20,6 +23,79 @@ public class StartUITest {
         assertThat(out.toString(), is(
                 "Menu." + System.lineSeparator() +
                         "0. === Exit Program ====" + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    public void whenShowAllAction() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0", "1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ShowAllAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. === Showing all items ====" + System.lineSeparator() +
+                        "1. === Exit Program ====" + System.lineSeparator() +
+                        "Заявок нет" + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. === Showing all items ====" + System.lineSeparator() +
+                        "1. === Exit Program ====" + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    public void whenFindByIdAction() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0", "1", "1"}
+        );
+        Tracker tracker = new Tracker();
+        Item item = new Item("New item");
+        tracker.add(item);
+        UserAction[] actions = {
+                new FindByIdAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. === Finding item by ID ====" + System.lineSeparator() +
+                        "1. === Exit Program ====" + System.lineSeparator() +
+                        tracker.findById(1) + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. === Finding item by ID ====" + System.lineSeparator() +
+                        "1. === Exit Program ====" + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    public void whenFindByNameAction() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"0", "New item", "1"}
+        );
+        Tracker tracker = new Tracker();
+        Item item = new Item("New item");
+        tracker.add(item);
+        UserAction[] actions = {
+                new FindByNameAction(out),
+                new Exit()
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                "Menu." + System.lineSeparator() +
+                        "0. === Finding item by name ====" + System.lineSeparator() +
+                        "1. === Exit Program ====" + System.lineSeparator() +
+                        tracker.findByName("New item")[0] + System.lineSeparator() +
+                        "Menu." + System.lineSeparator() +
+                        "0. === Finding item by name ====" + System.lineSeparator() +
+                        "1. === Exit Program ====" + System.lineSeparator()
         ));
     }
 
