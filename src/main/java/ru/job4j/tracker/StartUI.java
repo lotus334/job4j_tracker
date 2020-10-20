@@ -1,9 +1,16 @@
 package ru.job4j.tracker;
 
 public class StartUI {
-    public void init(Input input, Tracker tracker) {
+    public void init(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
         int select;
+        while (run) {
+            this.showMenu(actions);
+            select = input.askInt("Select: ");
+            UserAction action = actions[select];
+            run = action.execute(input, tracker);
+        }
+        /*
         while (run) {
             this.showMenu();
             select = input.askInt("select: ");
@@ -23,19 +30,18 @@ public class StartUI {
                 run = false;
             }
         }
+
+         */
     }
 
-    private void showMenu() {
+    private void showMenu(UserAction[] actions) {
         System.out.println("Menu.");
-        System.out.println("0. Add new Item\n" +
-                "1. Show all items\n" +
-                "2. Edit item\n" +
-                "3. Delete item\n" +
-                "4. Find item by Id\n" +
-                "5. Find items by name\n" +
-                "6. Exit Program\n");
+        for (int index = 0; index < actions.length; index++) {
+            System.out.println(index + ". " + actions[index].name());
+        }
     }
 
+    /*
     public static void createItem(Input input, Tracker tracker) {
         System.out.println("=== Create a new Item ====");
         String name = input.askStr("Enter name: ");
@@ -92,9 +98,20 @@ public class StartUI {
         }
     }
 
+     */
+
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        new StartUI().init(input, tracker);
+        UserAction[] actions = {
+                new CreateAction(),
+                new ShowAllAction(),
+                new ReplaceAction(),
+                new DeleteAction(),
+                new FindByIdAction(),
+                new FindByNameAction(),
+                new ExitAction()
+        };
+        new StartUI().init(input, tracker, actions);
     }
 }
