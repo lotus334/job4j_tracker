@@ -1,6 +1,11 @@
 package ru.job4j.tracker;
 
 public class ReplaceAction implements UserAction{
+    private Output out;
+
+    public ReplaceAction(Output out) {
+        this.out = out;
+    }
 
     @Override
     public String name() {
@@ -14,7 +19,7 @@ public class ReplaceAction implements UserAction{
         Item itemForEdit = new Item();
         itemForEdit.setName(nameForEdit);
         boolean isReplaced = tracker.replace(idForEdit, itemForEdit);
-        System.out.println(isReplaced ? "Заявка успешно изменена" : "Ошибка при изменении заявки");
+        out.println(isReplaced ? "Заявка успешно изменена" : "Ошибка при изменении заявки");
         return true;
     }
 }
