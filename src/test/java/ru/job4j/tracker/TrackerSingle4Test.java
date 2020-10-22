@@ -7,8 +7,8 @@ import static org.junit.Assert.assertThat;
 public class TrackerSingle4Test {
     @Test
     public void twoCallsOneInstance() {
-        TrackerSingle4 tracker = TrackerSingle4.getInstance();
-        TrackerSingle4 trackerDubbing = TrackerSingle4.getInstance();
+        Tracker tracker = TrackerSingle4.getInstance();
+        Tracker trackerDubbing = TrackerSingle4.getInstance();
         assertThat(tracker, is(trackerDubbing));
     }
 }

@@ -3,39 +3,25 @@ package ru.job4j.tracker;
 import java.util.Arrays;
 
 public class TrackerSingle4 {
-    private static Tracker tracker = new Tracker();
-
     private TrackerSingle4() {}
 
-    public static TrackerSingle4 getInstance() {
-        return Holder.INSTANCE;
-    }
-
-    public Item add(Item item) {
-        return tracker.add(item);
-    }
-
-    public Item[] findAll() {
-        return tracker.findAll();
-    }
-
-    public Item[] findByName(String key) {
-        return tracker.findByName(key);
-    }
-
-    public Item findById(int id) {
-        return tracker.findById(id);
-    }
-
-    public boolean replace(int id, Item item) {
-        return tracker.replace(id, item);
-    }
-
-    public boolean delete(int id) {
-        return tracker.delete(id);
+    public static Tracker getInstance() {
+        return Holder.TRACKER;
     }
 
     private static final class Holder {
-        private static final TrackerSingle4 INSTANCE = new TrackerSingle4();
+        private static final Tracker TRACKER = new Tracker();
+    }
+
+    public static void main(String[] args) {
+        TrackerSingle4 singleton = new TrackerSingle4();
+        System.out.println(singleton);
+        Tracker tr1 = TrackerSingle4.getInstance();
+        System.out.println(tr1);
+        tr1.add(new Item("New"));
+        Tracker tr2 = TrackerSingle4.getInstance();
+        System.out.println(tr2);
+        System.out.println(Arrays.toString(tr1.findAll()));
+        System.out.println(Arrays.toString(tr2.findAll()));
     }
 }

@@ -8,8 +8,8 @@ public class TrackerSingle2Test {
 
     @Test
     public void twoCallsOneInstance() {
-        TrackerSingle2 tracker = TrackerSingle2.getInstance();
-        TrackerSingle2 trackerDubbing = TrackerSingle2.getInstance();
+        Tracker tracker = TrackerSingle2.getInstance();
+        Tracker trackerDubbing = TrackerSingle2.getInstance();
         assertThat(tracker, is(trackerDubbing));
     }
 }
