@@ -14,9 +14,8 @@ public enum TrackerSingle1 {
         Tracker tr1 = TrackerSingle1.getInstance();
         Tracker tr2 = TrackerSingle1.getInstance();
         tr1.add(new Item("New"));
-        System.out.println(Arrays.toString(tr1.findAll()));
-        System.out.println(Arrays.toString(tr2.findAll()));
-        System.out.println(tr1.findAll());
-        System.out.println(tr2.findAll());
+        for (Item item : tr2.findAll()) {
+            System.out.println(item);
+        }
     }
 }

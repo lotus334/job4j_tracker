@@ -21,7 +21,9 @@ public class TrackerSingle4 {
         tr1.add(new Item("New"));
         Tracker tr2 = TrackerSingle4.getInstance();
         System.out.println(tr2);
-        System.out.println(Arrays.toString(tr1.findAll()));
-        System.out.println(Arrays.toString(tr2.findAll()));
+
+        for (Item item : tr2.findAll()) {
+            System.out.println(item);
+        }
     }
 }

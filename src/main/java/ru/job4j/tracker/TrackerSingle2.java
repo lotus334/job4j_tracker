@@ -23,7 +23,8 @@ public class TrackerSingle2 {
         System.out.println(tracker2);
 
         tracker1.add(new Item("NEW"));
-        System.out.println(Arrays.toString(tracker1.findAll()));
-        System.out.println(Arrays.toString(tracker2.findAll()));
+        for (Item item : tracker.findAll()) {
+            System.out.println(item);
+        }
     }
 }

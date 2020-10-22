@@ -15,8 +15,8 @@ public class TrackerSingle3 {
         Tracker tracker = TrackerSingle3.getInstance();
         Tracker tracker2 = TrackerSingle3.getInstance();
         tracker.add(new Item("New"));
-
-        System.out.println(Arrays.toString(tracker.findAll()));
-        System.out.println(Arrays.toString(tracker2.findAll()));
+        for (Item item : tracker2.findAll()) {
+            System.out.println(item);
+        }
     }
 }
