@@ -21,20 +21,13 @@ public class PhoneDictionary {
      */
     public ArrayList<Person> find(String key) {
         ArrayList<Person> result = new ArrayList<>();
-        for (Person pers :this.persons) {
-            String[] array = {
-                    pers.getName(),
-                    pers.getSurname(),
-                    pers.getAddress(),
-                    pers.getPhone()
-            };
-            for (String getter : array) {
-                if (getter.contains(key)) {
-                    result.add(pers);
-                    break;
-                }
+        for (Person pers : this.persons) {
+            if (pers.getName().contains(key)
+            || pers.getSurname().contains(key)
+            || pers.getPhone().contains(key)
+            || pers.getAddress().contains(key)) {
+                result.add(pers);
             }
-
         }
         return result;
     }
