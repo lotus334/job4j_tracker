@@ -1,0 +1,19 @@
+package ru.job4j.collection;
+
+import java.util.HashSet;
+import java.util.List;
+
+public class NotifyAccount {
+    public static HashSet<Account> sent(List<Account> accounts) {
+        HashSet<Account> rsl = new HashSet<>();
+        /*
+        rsl.addAll(accounts);
+        OR
+        accounts.forEach(rsl::add);
+         */
+        for (Account acc : accounts) {
+            rsl.add(acc);
+        }
+        return rsl;
+    }
+}
