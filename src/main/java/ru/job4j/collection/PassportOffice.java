@@ -1,6 +1,5 @@
 package ru.job4j.collection;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,4 +20,4 @@ public class PassportOffice {
         return citizens.get(passport);
     }
 }
-// temporary changes
+// temporary changes 2
