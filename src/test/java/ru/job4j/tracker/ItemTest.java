@@ -22,7 +22,7 @@ public class ItemTest {
                 item3,
                 item2
         );
-        Collections.sort(list);
+        Collections.sort(list, new SortByIdItem());
         List<Item> expected = Arrays.asList(item1, item2, item3);
         assertThat(list, is(expected));
     }
@@ -37,7 +37,7 @@ public class ItemTest {
                 item3,
                 item2
         );
-        Collections.sort(list, Collections.reverseOrder());
+        Collections.sort(list, new SortByIdItemReversed());
         List<Item> expected = Arrays.asList(item3, item2, item1);
         assertThat(list, is(expected));
     }
@@ -67,7 +67,7 @@ public class ItemTest {
                 item3,
                 item2
         );
-        Collections.sort(list, Collections.reverseOrder(new SortByNameItem()));
+        Collections.sort(list, new SortByNameItemReversed());
         List<Item> expected = Arrays.asList(item3, item2, item1);
         assertThat(list, is(expected));
     }
@@ -101,7 +101,7 @@ public class ItemTest {
                 item3,
                 item2
         );
-        Collections.sort(list, new SortByDateItem().reversed());
+        Collections.sort(list, new SortByDateItemReversed());
         List<Item> expected = Arrays.asList(item2, item3, item1);
         assertThat(list, is(expected));
     }
