@@ -11,11 +11,13 @@ public class BankService {
 
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport);
-        List<Account> accounts = users.get(user);
-        if (accounts.contains(account)) {
-            System.out.println("The account was added earlier");
-        } else {
-            accounts.add(account);
+        if (user != null) {
+            List<Account> accounts = users.get(user);
+            if (accounts.contains(account)) {
+                System.out.println("The account was added earlier");
+            } else {
+                accounts.add(account);
+            }
         }
     }
 
@@ -53,11 +55,8 @@ public class BankService {
         boolean rsl = false;
         Account srcAccount = findByRequisite(srcPassport, srcRequisite);
         Account destAccount = findByRequisite(destPassport, destRequisite);
-        if (srcAccount == null  || destAccount == null) {
-            System.out.println("Cant find account");
-        } else if (srcAccount.getBalance() < amount) {
-            System.out.println("Insufficient funds");
-        } else {
+        if ((srcAccount != null  || destAccount != null || srcAccount.getBalance() >= amount)
+                && srcAccount != null && destAccount != null) {
             rsl = true;
             destAccount.setBalance(destAccount.getBalance() + amount);
             srcAccount.setBalance(srcAccount.getBalance() - amount);
