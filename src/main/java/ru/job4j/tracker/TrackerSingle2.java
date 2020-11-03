@@ -1,11 +1,9 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
-
 public class TrackerSingle2 {
     private static Tracker tracker = new Tracker();
 
-    private TrackerSingle2() {}
+    private TrackerSingle2() { }
 
     public static Tracker getInstance() {
         if (tracker == null) {

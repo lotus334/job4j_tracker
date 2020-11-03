@@ -9,11 +9,6 @@ public class PhoneDictionary {
         this.persons.add(person);
     }
 
-    enum en {
-        getName(),
-        getSurname(),
-    }
-
     /**
      * Вернуть список всех пользователей, который содержат key в любых полях.
      * @param key Ключ поиска.
