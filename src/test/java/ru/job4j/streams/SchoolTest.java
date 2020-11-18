@@ -80,4 +80,34 @@ public class SchoolTest {
         expected.put("Surname9", new Student(90, "Surname9"));
         assertThat(rsl, is(expected));
     }
+
+    @Test
+    public void whenCollectToMapWithDupl() {
+        List<Student> students = new ArrayList<>();
+        students.add(new Student(10, "Surname1"));
+        students.add(new Student(20, "Surname2"));
+        students.add(new Student(30, "Surname3"));
+        students.add(new Student(40, "Surname4"));
+        students.add(new Student(50, "Surname5"));
+        students.add(new Student(60, "Surname6"));
+        students.add(new Student(70, "Surname7"));
+        students.add(new Student(80, "Surname8"));
+        students.add(new Student(90, "Surname9"));
+        students.add(new Student(50, "Surname5"));
+        students.add(new Student(40, "Surname4"));
+
+        School sc = new School();
+        Map<String, Student> rsl = sc.collectToMap(students);
+        Map<String, Student> expected = new TreeMap<>();
+        expected.put("Surname1", new Student(10, "Surname1"));
+        expected.put("Surname2", new Student(20, "Surname2"));
+        expected.put("Surname3", new Student(30, "Surname3"));
+        expected.put("Surname4", new Student(40, "Surname4"));
+        expected.put("Surname5", new Student(50, "Surname5"));
+        expected.put("Surname6", new Student(60, "Surname6"));
+        expected.put("Surname7", new Student(70, "Surname7"));
+        expected.put("Surname8", new Student(80, "Surname8"));
+        expected.put("Surname9", new Student(90, "Surname9"));
+        assertThat(rsl, is(expected));
+    }
 }
