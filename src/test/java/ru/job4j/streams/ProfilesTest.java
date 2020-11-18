@@ -15,8 +15,10 @@ public class ProfilesTest {
     @Before
     public void setUp() {
         profiles.add(new Profile(new Address("City1", "Street2", 1, 2)));
-        profiles.add(new Profile(new Address("City3", "Street4", 3, 4)));
         profiles.add(new Profile(new Address("City5", "Street6", 5, 6)));
+        profiles.add(new Profile(new Address("City3", "Street4", 3, 4)));
+        profiles.add(new Profile(new Address("City1", "Street2", 1, 2)));
+        profiles.add(new Profile(new Address("City3", "Street4", 3, 4)));
     }
 
     @Test
