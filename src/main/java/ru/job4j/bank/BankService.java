@@ -10,7 +10,7 @@ public class BankService {
     }
 
     public void addAccount(String passport, Account account) {
-        Optional<User> user = findByPassport(passport);
+        var user = findByPassport(passport);
         if (user.isPresent()) {
             List<Account> accounts = users.get(user.get());
             if (accounts.contains(account)) {
@@ -18,6 +18,8 @@ public class BankService {
             } else {
                 accounts.add(account);
             }
+        } else {
+            System.out.println("User not found");
         }
     }
 
@@ -28,7 +30,7 @@ public class BankService {
     }
 
     public Optional<Account> findByRequisite(String passport, String requisite) {
-        Optional<User> user = findByPassport(passport);
+        var user = findByPassport(passport);
         Optional<Account> account = Optional.empty();
         if (user.isPresent()) {
             account = users.getOrDefault(findByPassport(passport).get(), new ArrayList<>()).stream()
@@ -40,7 +42,7 @@ public class BankService {
 
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
-        boolean rsl = false;
+        var rsl = false;
         var srcAccount = findByRequisite(srcPassport, srcRequisite);
         var destAccount = findByRequisite(destPassport, destRequisite);
         if (srcAccount.isPresent()
