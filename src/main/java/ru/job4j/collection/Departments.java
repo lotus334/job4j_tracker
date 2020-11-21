@@ -1,15 +1,15 @@
 package ru.job4j.collection;
 
 import java.util.Comparator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class Departments {
 
     public static List<String> fillGaps(List<String> deps) {
-        Set<String> tmp = new LinkedHashSet<>();
+        Set<String> tmp = new TreeSet<>();
         for (String value : deps) {
             String start = "";
             for (String el : value.split("/")) {
