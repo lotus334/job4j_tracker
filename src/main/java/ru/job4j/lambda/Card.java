@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Card {
-    private Suit suit;
-    private Value value;
+    private final Suit suit;
+    private final Value value;
 
     public Card(Suit suit, Value value) {
         this.suit = suit;
@@ -25,19 +25,23 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "suit=" + suit +
-                ", value=" + value +
-                '}';
+        return "Card{"
+                + "suit=" + suit
+                + ", value=" + value
+                + '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Card card = (Card) o;
-        return suit == card.suit &&
-                value == card.value;
+        return suit == card.suit
+                && value == card.value;
     }
 
     @Override
@@ -80,7 +84,7 @@ public class Card {
                 break;
             }
         }
-        if (deck.stream().distinct().count() < deck.stream().count()) {
+        if (deck.stream().distinct().count() < (long) deck.size()) {
             result[0] = false;
         }
         System.out.println(result[0]);
